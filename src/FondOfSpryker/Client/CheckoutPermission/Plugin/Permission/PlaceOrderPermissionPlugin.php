@@ -1,15 +1,14 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace FondOfSpryker\Client\CheckoutPermission\Plugin\Permission;
 
 use Spryker\Shared\PermissionExtension\Dependency\Plugin\ExecutablePermissionPluginInterface;
-
-use function in_array;
-use function is_int;
 use function array_key_exists;
+use function in_array;
 use function is_array;
+use function is_int;
 
 class PlaceOrderPermissionPlugin implements ExecutablePermissionPluginInterface
 {
@@ -24,9 +23,9 @@ class PlaceOrderPermissionPlugin implements ExecutablePermissionPluginInterface
      */
     public function can(array $configuration, $context = null): bool
     {
-       if (! is_int($context)) {
-           return false;
-       }
+        if (!is_int($context)) {
+            return false;
+        }
 
         return $this->isCompanyIdInArray(
             $context,
@@ -52,8 +51,10 @@ class PlaceOrderPermissionPlugin implements ExecutablePermissionPluginInterface
      */
     protected function getCompanyIdsFromConfigurationArray(array $configuration): array
     {
-        if (array_key_exists(static::FIELD_ID_COMPANIES, $configuration)
-            && is_array($configuration[static::FIELD_ID_COMPANIES])) {
+        if (
+            array_key_exists(static::FIELD_ID_COMPANIES, $configuration)
+            && is_array($configuration[static::FIELD_ID_COMPANIES])
+        ) {
             return $configuration[static::FIELD_ID_COMPANIES];
         }
 
